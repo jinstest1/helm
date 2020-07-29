@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.ingress.name }}
+  labels:
+    app: {{ .Values.ingress.app  }}
+  annotations:
+    ingress.kubernetes.io/use-port-in-redirects: 'true'
+    ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
+    kubernetes.io/ingress.class: std-ingress-class
+    nginx.ingress.kubernetes.io/proxy-body-size: "4m"
+spec:
+  tls:
+    - hosts: {{ .Values.ingress.host }}
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ .Values.service.name }}
+              servicePort: {{ .Values.service.port }}
+          
