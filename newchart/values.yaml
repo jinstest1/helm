@@ -1,0 +1,15 @@
+
+
+serviceAccount:
+  name: "mynamespace-user"
+
+nameSpace:
+  name: "mynamespace"
+
+
+role:
+  name: "mynamespace-user-full-access"
+  
+roleBinding:
+  name: "mynamespace-user-view"
+  
